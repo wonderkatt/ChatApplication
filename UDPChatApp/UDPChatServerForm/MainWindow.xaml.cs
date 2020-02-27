@@ -20,9 +20,18 @@ namespace UDPChatServerForm
     /// </summary>
     public partial class MainWindow : Window
     {
+
+        UDPChatApp.UDPChatServer mUDPChatServer;
+
         public MainWindow()
         {
+            mUDPChatServer = new UDPChatApp.UDPChatServer();
             InitializeComponent();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            mUDPChatServer.StartRecievingData();
         }
     }
 }

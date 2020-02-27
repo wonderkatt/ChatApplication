@@ -59,7 +59,12 @@ namespace UDPChatApp
 
         private void RecieveCompletedCallback(object sender, SocketAsyncEventArgs e)
         {
-            throw new NotImplementedException();
+            string textRecieved = Encoding.ASCII.GetString(e.Buffer, 0, e.BytesTransferred);
+            Console.WriteLine($"Text recieved: {textRecieved} \n " +
+                $"Number of bytes recieved: {e.BytesTransferred} \n" +
+                $"Recieved data from endpoint: {e.RemoteEndPoint}");
+
+            StartRecievingData();
         }
     }
 }
