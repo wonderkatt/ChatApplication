@@ -41,6 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PrintStringEventArgs.cs" />
+    <Compile Include="UDPChatClient.cs" />
+    <Compile Include="UDPChatGeneral.cs" />
     <Compile Include="UDPChatServer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

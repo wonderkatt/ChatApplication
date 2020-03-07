@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using UDPChatApp;
 
 namespace UDPChatServerForm
 {
@@ -26,7 +27,21 @@ namespace UDPChatServerForm
         public MainWindow()
         {
             mUDPChatServer = new UDPChatApp.UDPChatServer();
+            mUDPChatServer.RaisePrintStringEvent += chatClient_PringString;
             InitializeComponent();
+        }
+
+        private void chatClient_PringString(object sender, PrintStringEventArgs e)
+        {
+            Action<string> print = PrintToTextBox;
+
+            tbConsole.Dispatcher.Invoke(print, new String[] { e.MessageToPrint });
+            //tbConsole.Text += $"{Environment.NewLine}{DateTime.Now} - {e.MessageToPrint}";
+        }
+
+        private void PrintToTextBox(string stringToPrint)
+        {
+            tbConsole.Text += $"{Environment.NewLine}{DateTime.Now} - {stringToPrint}";
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
